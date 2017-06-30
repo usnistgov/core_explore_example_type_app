@@ -1,0 +1,2 @@
+core_explore_example_app==1.0.0-alpha2
+core_composer_app==1.0.0-alpha2
