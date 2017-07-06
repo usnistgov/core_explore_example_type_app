@@ -1,7 +1,7 @@
 """ Url router for the explore example application
 """
 
-from core_main_app.components.template_version_manager import api as template_version_manager_api
+from core_composer_app.components.type_version_manager import api as type_version_manager_api
 from django.conf.urls import url
 
 from core_explore_example_app.views.user import views as explore_example_app_user_views
@@ -10,8 +10,7 @@ from core_explore_example_type_app.views.user import views as user_views
 
 urlpatterns = [
     url(r'^$', explore_example_app_user_views.
-        # FIXME: Change API to type_version_manager_api once the parser supports rendering of Types
-        IndexView.as_view(api=template_version_manager_api,
+        IndexView.as_view(api=type_version_manager_api,
                           object_name="type",
                           select_object_redirect="core_explore_example_type_select_fields"),
         name='core_explore_example_type_index'),
