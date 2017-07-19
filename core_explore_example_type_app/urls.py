@@ -29,7 +29,8 @@ urlpatterns = [
         name='core_explore_example_type_build_query'),
 
     url(r'^results/(?P<template_id>\w+)/(?P<query_id>\w+)$',
-        explore_example_app_user_views.results,
+        explore_example_app_user_views.ResultQueryView.as_view(
+            back_to_query_redirect='core_explore_example_type_build_query'),
         name='core_explore_example_type_results'),
 
     url(r'^get-query$', user_ajax.get_query,
