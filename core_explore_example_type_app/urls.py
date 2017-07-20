@@ -9,10 +9,10 @@ from core_explore_example_type_app.views.user import ajax as user_ajax
 from core_explore_example_type_app.views.user import views as user_views
 
 urlpatterns = [
-    url(r'^$', explore_example_app_user_views.
-        IndexView.as_view(api=type_version_manager_api,
-                          object_name="type",
-                          select_object_redirect="core_explore_example_type_select_fields"),
+    url(r'^$', user_views.
+        TypeIndexView.as_view(api=type_version_manager_api,
+                              object_name="type",
+                              select_object_redirect="core_explore_example_type_select_fields"),
         name='core_explore_example_type_index'),
 
     url(r'^select-fields/(?P<template_id>\w+)$',
