@@ -1,2 +1,4 @@
 core_explore_example_app==1.0.0-alpha3
+core_explore_common_app==1.0.0-alpha3
 core_composer_app==1.0.0-alpha3
+signals_utils==1.0.0-beta1

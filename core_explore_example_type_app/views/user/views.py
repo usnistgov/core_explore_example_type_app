@@ -57,7 +57,10 @@ class TypeIndexView(IndexView):
 class TypeBuildQueryView(BuildQueryView):
     build_query_url = 'core_explore_example_type_build_query'
     get_query_url = 'core_explore_example_type_get_query'
+    save_query_url = 'core_explore_example_type_save_query'
     results_url = 'core_explore_example_type_results'
+    select_fields_url = 'core_explore_example_type_select_fields'
+    local_query_url = 'core_explore_example_type_local_query_data_item'
     object_name = "type"
 
     @staticmethod
