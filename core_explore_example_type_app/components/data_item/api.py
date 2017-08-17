@@ -80,7 +80,7 @@ def generate_data_items_from_data(data):
             list_to_insert.append(item)
 
         # Upsert DataItem
-        upsert(DataItem(data=data, list_content=list_to_insert,
+        upsert(DataItem(data=data, template = data.template, list_content=list_to_insert,
                         last_modification_date=data.last_modification_date))
 
         # delete data_structure
