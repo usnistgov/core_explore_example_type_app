@@ -62,6 +62,8 @@ class TypeBuildQueryView(BuildQueryView):
     select_fields_url = 'core_explore_example_type_select_fields'
     local_query_url = 'core_explore_example_type_local_query_data_item'
     object_name = "type"
+    data_sources_selector_template = \
+        'core_explore_example_type_app/user/selector/data_sources_selector.html'
 
     @staticmethod
     def _create_new_query(user_id, type_):
