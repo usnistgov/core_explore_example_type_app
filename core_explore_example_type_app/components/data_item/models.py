@@ -6,6 +6,7 @@ from mongoengine.queryset.base import CASCADE
 
 from core_main_app.commons import exceptions
 from core_main_app.components.data.models import Data
+from core_main_app.components.template.models import Template
 
 
 class Item(EmbeddedDocument):
@@ -20,6 +21,7 @@ class DataItem(Document):
     """
     # When data is deleted, all relative data item is deleted as well
     data = fields.ReferenceField(Data, blank=False, reverse_delete_rule=CASCADE)
+    template = fields.ReferenceField(Template, blank=False)
     list_content = fields.ListField(fields.EmbeddedDocumentField(Item), default=[], blank=False)
     last_modification_date = fields.DateTimeField(blank=True, default=None)
 
