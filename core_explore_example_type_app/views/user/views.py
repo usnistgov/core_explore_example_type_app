@@ -66,6 +66,13 @@ class TypeBuildQueryView(BuildQueryView):
         'core_explore_example_type_app/user/selector/data_sources_selector.html'
 
     @staticmethod
+    def _get_css():
+        base_css = super(TypeBuildQueryView, TypeBuildQueryView)._get_css()
+        # Add custom css
+        base_css.extend(["core_explore_example_type_app/user/css/query_builder_type.css",])
+        return base_css
+
+    @staticmethod
     def _create_new_query(user_id, type_):
         """ Create a new query
         Args:
