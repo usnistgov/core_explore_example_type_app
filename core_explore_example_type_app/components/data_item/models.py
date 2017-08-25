@@ -55,14 +55,13 @@ class DataItem(Document):
         DataItem.objects(data=data).delete()
 
     @staticmethod
-    def execute_query(query, distinct_field):
+    def execute_query(query):
         """Execute a query.
 
         Args:
             query:
-            distinct_field:
 
         Returns:
 
         """
-        return DataItem.objects(__raw__=query).distinct(distinct_field)
+        return DataItem.objects(__raw__=query)
