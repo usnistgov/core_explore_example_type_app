@@ -1,3 +1,4 @@
 include README.md
 include requirements.txt
 recursive-include core_explore_example_type_app/templates *
+recursive-include core_explore_example_type_app/static *
