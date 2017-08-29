@@ -55,8 +55,8 @@ class DataItem(Document):
         DataItem.objects(data=data).delete()
 
     @staticmethod
-    def execute_query(query):
-        """Execute a query.
+    def execute_query_distinct_by_data(query):
+        """Execute a query on the DataItem collection distinct by data.
 
         Args:
             query:
@@ -64,4 +64,4 @@ class DataItem(Document):
         Returns:
 
         """
-        return DataItem.objects(__raw__=query)
+        return DataItem.objects(__raw__=query).distinct("data")

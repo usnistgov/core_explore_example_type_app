@@ -12,7 +12,7 @@ from core_parser_app.components.data_structure_element import api as data_struct
 from core_parser_app.tools.parser.parser import delete_branch_from_db
 from core_main_app.utils.access_control.decorators import access_control
 from core_explore_example_type_app.components.data_item.access_control import \
-    get_user_readable_data_item_query
+    get_user_readable_data
 
 
 def get_by_data(data):
@@ -92,9 +92,9 @@ def generate_data_items_from_data(data):
         raise exceptions.ApiError('An error occurred during the generation: {0}.'.format(e.message))
 
 
-@access_control(get_user_readable_data_item_query)
-def execute_query(query, user):
-    """Execute a query on the DataItem collection.
+@access_control(get_user_readable_data)
+def execute_query_distinct_by_data(query, user):
+    """Execute a query on the DataItem collection distinct by data.
 
     Args:
         query:
@@ -102,7 +102,7 @@ def execute_query(query, user):
     Returns:
 
     """
-    return DataItem.execute_query(query)
+    return DataItem.execute_query_distinct_by_data(query)
 
 
 def upsert_from_data(data, force_update=False):

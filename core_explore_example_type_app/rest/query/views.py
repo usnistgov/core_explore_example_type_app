@@ -8,5 +8,4 @@ class ExecuteLocalQueryDataItemView(ExecuteLocalQueryView):
     sub_document_root = 'list_content'
 
     def execute_raw_query(self, raw_query):
-        # Distinct result by the data field
-        return data_item_api.execute_query(raw_query, self.request.user).distinct("data")
+        return data_item_api.execute_query_distinct_by_data(raw_query, self.request.user)
