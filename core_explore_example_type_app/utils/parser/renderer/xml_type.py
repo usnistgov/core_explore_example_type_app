@@ -52,7 +52,9 @@ class XmlTypeRenderer(XmlRenderer):
                     content[1] += tmp_content[1]
                     content[2] += tmp_content[2]
                     # Use the name of the type instead of the name of the element.
-                    if 'type' in element.options:
+                    # element.options['type'] can appear and be equal to none
+                    # that's why we don't do directly element_name = element.options['type']
+                    if 'type' in element.options and element.options['type'] is not None:
                         element_name = element.options['type']
                 elif child.tag == 'input':
                     tmp_content = child.value if child.value is not None else ''
@@ -63,7 +65,9 @@ class XmlTypeRenderer(XmlRenderer):
                     content[1] += tmp_content[1]
                     content[2] += tmp_content[2]
                     # Use the name of the type instead of the name of the element.
-                    if 'type' in element.options:
+                    # element.options['type'] can appear and be equal to none
+                    # that's why we don't do directly element_name = element.options['type']
+                    if 'type' in element.options and element.options['type'] is not None:
                         element_name = element.options['type']
                 elif child.tag == 'module':
                     tmp_content = self.render_module(child)
