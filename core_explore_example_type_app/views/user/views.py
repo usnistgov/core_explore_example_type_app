@@ -75,7 +75,9 @@ class TypeBuildQueryView(BuildQueryView):
 
         """
         # Get templates using the given Type
-        templates = template_api.get_all_templates_by_dependencies([type_])
+        # Here we should get all dependencies recurcively and remove all template.type from the list
+        # Passing an empty list is a quick fix
+        # templates = template_api.get_all_templates_by_dependencies([type_])
         # Create query
-        query = Query(user_id=str(user_id), templates=templates)
+        query = Query(user_id=str(user_id), templates=[])
         return query_api.upsert(query)
