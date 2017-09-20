@@ -2,8 +2,9 @@
 Handle signals.
 """
 from signals_utils.signals.mongo import connector, signals
+
+import core_explore_example_type_app.tasks as explore_example_type_task
 from core_main_app.components.data.models import Data
-from core_explore_example_type_app.components.data_item import api as data_item_api
 
 
 def init():
@@ -22,7 +23,7 @@ def post_save_data(sender, document, **kwargs):
     """
     try:
         # generate all item from the data
-        data_item_api.generate_data_items_from_data(document)
+        explore_example_type_task.generate_data_items_from_data.delay(str(document.id))
     except Exception as e:
         pass
         # TODO: If something went wrong, do we delete the data and raise an exception?
