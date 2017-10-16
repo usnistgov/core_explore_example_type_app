@@ -15,6 +15,7 @@ def generate_data_items_from_all_data_in_database():
     """ Generate DataItem from all data in db
     """
     try:
+
         data = Data.get_all()
         for document in data:
             try:
