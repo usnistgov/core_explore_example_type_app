@@ -1,4 +1,4 @@
-core_explore_example_app==1.0.0-alpha4
-core_explore_common_app==1.0.0-alpha4
-core_composer_app==1.0.0-alpha4
-signals_utils==1.0.0-beta2
+core_explore_example_app==1.0.0-alpha5
+core_explore_common_app==1.0.0-alpha5
+core_composer_app==1.0.0-alpha5
+signals_utils==1.0.0-beta3
