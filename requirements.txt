@@ -1,4 +1,7 @@
-core_explore_example_app==1.0.0-alpha5
-core_explore_common_app==1.0.0-alpha5
-core_composer_app==1.0.0-alpha5
-signals_utils==1.0.0-beta3
+celery==4.1.0
+Django==1.11.7
+# Installs: django-mongoengine==0.2.1
+git+https://github.com/MongoEngine/django-mongoengine
+django-simple-menu==1.2.1
+mock==2.0.0
+mongoengine==0.11.0
