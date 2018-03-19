@@ -29,8 +29,7 @@ def load_form(request):
         template_id = request.POST['templateID']
         template = template_api.get(template_id)
         # get data structure
-        data_structure = explore_data_structure_api.create_and_get_explore_data_structure(request,
-                                                                                          template,
+        data_structure = explore_data_structure_api.create_and_get_explore_data_structure(template,
                                                                                           request.user.id)
         root_element = data_structure.data_structure_element_root
 

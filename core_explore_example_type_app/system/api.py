@@ -86,10 +86,7 @@ def _generate_form(xsd_string, xml_string):
     # build parser
     parser = get_parser()
     # generate form
-    # TODO: Remove this mocked request once the parser does not use sessions.
-    request = HttpRequest()
-    request.session = dict()
-    root_element_id = parser.generate_form(request, xsd_string, xml_string)
+    root_element_id = parser.generate_form(xsd_string, xml_string)
     # get the root element
     root_element = data_structure_element_api.get_by_id(root_element_id)
 

@@ -2,7 +2,7 @@
 """
 import logging
 
-from core_parser_app.tools.modules.module import AbstractModule
+from core_parser_app.tools.modules.views.module import AbstractModule
 from core_parser_app.tools.parser.renderer.list import AbstractListRenderer
 from core_explore_example_type_app.components.data_structure_type_element.models import \
     DataStructureTypeElement
