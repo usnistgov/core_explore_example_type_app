@@ -1,7 +1,8 @@
 """API for Data Structure Type Element
 """
-from core_explore_example_type_app.components.data_structure_type_element.models import \
-    DataStructureTypeElement
+from core_explore_example_type_app.components.data_structure_type_element.models import (
+    DataStructureTypeElement,
+)
 
 
 def upsert(data_structure_type_element):

@@ -1,10 +1,10 @@
 """ Data Item API
 """
 
-from core_explore_example_type_app.components.data_item.access_control import \
-    get_user_readable_data
+from core_main_app.access_control.decorators import access_control
 from core_explore_example_type_app.components.data_item.models import DataItem
-from core_main_app.utils.access_control.decorators import access_control
+from core_main_app.components.data import access_control as data_api_access_control
+from core_main_app.settings import DATA_SORTING_FIELDS
 
 
 def get_by_data(data):
@@ -46,8 +46,8 @@ def delete_from_data_if_exists(data):
         pass
 
 
-@access_control(get_user_readable_data)
-def execute_query_distinct_by_data(query, user):
+@access_control(data_api_access_control.can_read_data_query)
+def execute_query_distinct_by_data(query, user, order_by_field=DATA_SORTING_FIELDS):
     """Execute a query on the DataItem collection distinct by data.
 
     Args:

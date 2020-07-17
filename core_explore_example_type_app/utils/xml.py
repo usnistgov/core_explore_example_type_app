@@ -27,10 +27,10 @@ def generate_items(element, path):
         if len(lines) > 1:
             # could calculate an index here
             for line in lines:
-                item = {'path': path, 'value': convert_value(line)}
+                item = {"path": path, "value": convert_value(line)}
                 items_list.append(item)
         else:
-            item = {'path': path, 'value': convert_value(text)}
+            item = {"path": path, "value": convert_value(text)}
             items_list.append(item)
 
     # Loop on child elements

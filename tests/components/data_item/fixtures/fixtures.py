@@ -10,6 +10,7 @@ from core_main_app.components.workspace.models import Workspace
 class DataItemFixtures(FixtureInterface):
     """ Data Item fixtures
     """
+
     data_1 = None
     data_2 = None
     template = None
@@ -34,8 +35,12 @@ class DataItemFixtures(FixtureInterface):
 
         """
         # NOTE: no xml_content to avoid using unsupported GridFS mock
-        self.data_1 = Data(template=self.template, user_id='1', dict_content=None, title='title').save()
-        self.data_2 = Data(template=self.template, user_id='2', dict_content=None, title='title2').save()
+        self.data_1 = Data(
+            template=self.template, user_id="1", dict_content=None, title="title"
+        ).save()
+        self.data_2 = Data(
+            template=self.template, user_id="2", dict_content=None, title="title2"
+        ).save()
         self.data_collection = [self.data_1, self.data_2]
 
     def generate_template(self):
@@ -45,8 +50,10 @@ class DataItemFixtures(FixtureInterface):
 
         """
         template = Template()
-        xsd = '<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">' \
-              '<xs:element name="tag"></xs:element></xs:schema>'
+        xsd = (
+            '<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">'
+            '<xs:element name="tag"></xs:element></xs:schema>'
+        )
         template.content = xsd
         template.hash = ""
         template.filename = "filename"
@@ -61,10 +68,12 @@ class DataItemFixtures(FixtureInterface):
         data_item_collection = list()
 
         for data in self.data_collection:
-            data_item = DataItem(data=data,
-                                 template=data.template,
-                                 list_content=[Item(path='dummy.path', value='value')],
-                                 last_modification_date=data.last_modification_date).save()
+            data_item = DataItem(
+                data=data,
+                template=data.template,
+                list_content=[Item(path="dummy.path", value="value")],
+                last_modification_date=data.last_modification_date,
+            ).save()
             data_item_collection.append(data_item)
 
         self.data_item_collection = data_item_collection
@@ -105,23 +114,23 @@ class AccessControlDataItemFixture(FixtureInterface):
         Returns:
 
         """
-        data_1 = Data(template=self.template,
-                      title='Data 1',
-                      user_id='1').save()
+        data_1 = Data(template=self.template, title="Data 1", user_id="1").save()
         self.data_user_1.append(data_1)
-        data_2 = Data(template=self.template,
-                      title='Data 2',
-                      user_id='2').save()
+        data_2 = Data(template=self.template, title="Data 2", user_id="2").save()
         self.data_user_2.append(data_2)
-        data_3 = Data(template=self.template,
-                      title='Data 3',
-                      user_id='1',
-                      workspace=self.workspace_1.id).save()
+        data_3 = Data(
+            template=self.template,
+            title="Data 3",
+            user_id="1",
+            workspace=self.workspace_1.id,
+        ).save()
         self.data_user_1.append(data_3)
-        data_4 = Data(template=self.template,
-                      title='Data 4',
-                      user_id='2',
-                      workspace=self.workspace_2.id).save()
+        data_4 = Data(
+            template=self.template,
+            title="Data 4",
+            user_id="2",
+            workspace=self.workspace_2.id,
+        ).save()
         self.data_user_2.append(data_4)
         self.data_collection = [data_1, data_2, data_3, data_4]
 
@@ -132,8 +141,10 @@ class AccessControlDataItemFixture(FixtureInterface):
 
         """
         template = Template()
-        xsd = '<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">' \
-              '<xs:element name="tag"></xs:element></xs:schema>'
+        xsd = (
+            '<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">'
+            '<xs:element name="tag"></xs:element></xs:schema>'
+        )
         template.content = xsd
         template.hash = ""
         template.filename = "filename"
@@ -145,14 +156,12 @@ class AccessControlDataItemFixture(FixtureInterface):
         Returns:
 
         """
-        self.workspace_1 = Workspace(title="Workspace 1",
-                                     owner='1',
-                                     read_perm_id='1',
-                                     write_perm_id='1').save()
-        self.workspace_2 = Workspace(title="Workspace 2",
-                                     owner='2',
-                                     read_perm_id='2',
-                                     write_perm_id='2').save()
+        self.workspace_1 = Workspace(
+            title="Workspace 1", owner="1", read_perm_id="1", write_perm_id="1"
+        ).save()
+        self.workspace_2 = Workspace(
+            title="Workspace 2", owner="2", read_perm_id="2", write_perm_id="2"
+        ).save()
 
     def generate_data_item_collection(self):
         """ Generate a Data collection.
@@ -163,10 +172,12 @@ class AccessControlDataItemFixture(FixtureInterface):
         data_item_collection = list()
 
         for data in self.data_collection:
-            data_item = DataItem(data=data,
-                                 template=data.template,
-                                 list_content=[Item(path='dummy.path', value='value')],
-                                 last_modification_date=data.last_modification_date).save()
+            data_item = DataItem(
+                data=data,
+                template=data.template,
+                list_content=[Item(path="dummy.path", value="value")],
+                last_modification_date=data.last_modification_date,
+            ).save()
             data_item_collection.append(data_item)
 
         self.data_item_collection = data_item_collection

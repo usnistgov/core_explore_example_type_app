@@ -3,19 +3,23 @@ from unittest.case import TestCase
 from bson.objectid import ObjectId
 from mock.mock import patch
 
-from core_explore_example_type_app.components.data_structure_type_element import api as \
-    data_structure_type_element_api
-from core_explore_example_type_app.components.data_structure_type_element.models import \
-    DataStructureTypeElement
+from core_explore_example_type_app.components.data_structure_type_element import (
+    api as data_structure_type_element_api,
+)
+from core_explore_example_type_app.components.data_structure_type_element.models import (
+    DataStructureTypeElement,
+)
 from core_main_app.commons import exceptions
-from core_parser_app.components.data_structure_element.models import DataStructureElement
+from core_parser_app.components.data_structure_element.models import (
+    DataStructureElement,
+)
 
 
 class TestDataStructureTypeUpsert(TestCase):
     def setUp(self):
         self.data_structure = _create_data_structure_data()
 
-    @patch.object(DataStructureTypeElement, 'save_object')
+    @patch.object(DataStructureTypeElement, "save_object")
     def test_data_structure_type_data_upsert_returns_object(self, mock_save):
         # Arrange
         mock_save.return_value = self.data_structure
@@ -26,7 +30,7 @@ class TestDataStructureTypeUpsert(TestCase):
         # Assert
         self.assertIsInstance(result, DataStructureTypeElement)
 
-    @patch.object(DataStructureTypeElement, 'save_object')
+    @patch.object(DataStructureTypeElement, "save_object")
     def test_data_structure_type_upsert_raises_error_if_save_failed(self, mock_save):
         # Arrange
         mock_save.side_effect = Exception()
@@ -37,7 +41,7 @@ class TestDataStructureTypeUpsert(TestCase):
 
 
 class TestDataStructureTypeElementGetById(TestCase):
-    @patch.object(DataStructureTypeElement, 'get_by_id')
+    @patch.object(DataStructureTypeElement, "get_by_id")
     def test_get_by_id_returns_object(self, mock_get_by_id):
         # Arrange
         mock_data_structure = _create_data_structure_data()
@@ -51,7 +55,7 @@ class TestDataStructureTypeElementGetById(TestCase):
         # Assert
         self.assertIsInstance(result, DataStructureTypeElement)
 
-    @patch.object(DataStructureTypeElement, 'get_by_id')
+    @patch.object(DataStructureTypeElement, "get_by_id")
     def test_get_by_id_raises_exception_if_object_does_not_exist(self, mock_get_by_id):
         # Arrange
         mock_absent_id = ObjectId()
@@ -62,7 +66,7 @@ class TestDataStructureTypeElementGetById(TestCase):
         with self.assertRaises(exceptions.DoesNotExist):
             data_structure_type_element_api.get_by_id(mock_absent_id)
 
-    @patch.object(DataStructureTypeElement, 'get_by_id')
+    @patch.object(DataStructureTypeElement, "get_by_id")
     def test_get_by_id_raises_exception_if_internal_error(self, mock_get_by_id):
         # Arrange
         mock_absent_id = ObjectId()
@@ -78,7 +82,7 @@ class TestDataStructureTypeGetByDataStructureId(TestCase):
     def setUp(self):
         self.data_structure = _create_data_structure_data()
 
-    @patch.object(DataStructureTypeElement, 'get_by_data_structure_id')
+    @patch.object(DataStructureTypeElement, "get_by_data_structure_id")
     def test_get_by_data_returns_object(self, mock_get_by_data_structure_id):
         # Arrange
         mock_data_structure = _create_data_structure_data()
@@ -91,8 +95,10 @@ class TestDataStructureTypeGetByDataStructureId(TestCase):
         # Assert
         self.assertIsInstance(result, DataStructureTypeElement)
 
-    @patch.object(DataStructureTypeElement, 'get_by_data_structure_id')
-    def test_get_by_data_raises_exception_if_object_does_not_exist(self, mock_get_by_data):
+    @patch.object(DataStructureTypeElement, "get_by_data_structure_id")
+    def test_get_by_data_raises_exception_if_object_does_not_exist(
+        self, mock_get_by_data
+    ):
         # Arrange
         mock_absent_data = ObjectId()
 
@@ -102,7 +108,7 @@ class TestDataStructureTypeGetByDataStructureId(TestCase):
         with self.assertRaises(exceptions.DoesNotExist):
             data_structure_type_element_api.get_by_data_structure_id(mock_absent_data)
 
-    @patch.object(DataStructureTypeElement, 'get_by_data_structure_id')
+    @patch.object(DataStructureTypeElement, "get_by_data_structure_id")
     def test_get_by_data_raises_exception_if_internal_error(self, mock_get_by_data):
         # Arrange
         mock_absent_data = ObjectId()

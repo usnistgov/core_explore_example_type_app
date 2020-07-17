@@ -36,7 +36,9 @@ def _get_user_readable_data_list(data_list, user):
     """
     filtered_data_list = []
     # get list of accessible workspaces
-    accessible_workspaces = workspace_api.get_all_workspaces_with_read_access_by_user(user)
+    accessible_workspaces = workspace_api.get_all_workspaces_with_read_access_by_user(
+        user
+    )
     # FIXME: Beware of performance issue
     # Check that the data is owned by the user or if an accessible workspace
     for data in data_list:

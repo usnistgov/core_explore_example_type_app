@@ -1,7 +1,7 @@
-core-composer-app==1.0.0-alpha5
-core-explore-common-app==1.0.0-alpha5
-core-explore-example-app==1.0.0-alpha5
-core-main-app==1.0.0-alpha5
-core-parser-app==1.0.0-alpha5
-signals-utils==1.0.0-beta3
-xml-utils==1.0.0-alpha5
+core-composer-app==1.11.0
+core-explore-common-app==1.11.0
+core-explore-example-app==1.11.0
+core-main-app==1.11.0
+core-parser-app==1.11.0
+signals-utils==1.8.0
+xml-utils==1.10.0

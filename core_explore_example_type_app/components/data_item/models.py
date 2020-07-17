@@ -12,6 +12,7 @@ from core_main_app.components.template.models import Template
 class Item(EmbeddedDocument):
     """ Item object
     """
+
     path = fields.StringField(blank=False)
     value = fields.DynamicField(blank=False)
 
@@ -19,10 +20,13 @@ class Item(EmbeddedDocument):
 class DataItem(Document):
     """ Data Item object
     """
+
     # When data is deleted, all relative data item is deleted as well
     data = fields.ReferenceField(Data, blank=False, reverse_delete_rule=CASCADE)
     template = fields.ReferenceField(Template, blank=False)
-    list_content = fields.ListField(fields.EmbeddedDocumentField(Item), default=[], blank=False)
+    list_content = fields.ListField(
+        fields.EmbeddedDocumentField(Item), default=[], blank=False
+    )
     last_modification_date = fields.DateTimeField(blank=True, default=None)
 
     @staticmethod
@@ -38,9 +42,9 @@ class DataItem(Document):
         try:
             return DataItem.objects(data=data).get()
         except mongoengine_errors.DoesNotExist as e:
-            raise exceptions.DoesNotExist(e.message)
+            raise exceptions.DoesNotExist(str(e))
         except Exception as ex:
-            raise exceptions.ModelError(ex.message)
+            raise exceptions.ModelError(str(ex))
 
     @staticmethod
     def delete_from_data(data):

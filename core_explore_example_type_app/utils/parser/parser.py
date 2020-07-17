@@ -1,8 +1,12 @@
 """Parser util for explore_example_type app
 """
 from core_parser_app.tools.parser.parser import XSDParser, remove_child_element
-from core_explore_example_type_app.utils.parser.renderer.checkbox import CheckboxRenderer
-from core_parser_app.components.data_structure_element import api as data_structure_element_api
+from core_explore_example_type_app.utils.parser.renderer.checkbox import (
+    CheckboxRenderer,
+)
+from core_parser_app.components.data_structure_element import (
+    api as data_structure_element_api,
+)
 
 
 def get_parser():
@@ -11,13 +15,15 @@ def get_parser():
     Returns:
 
     """
-    return XSDParser(min_tree=False,
-                     ignore_modules=True,
-                     collapse=True,
-                     auto_key_keyref=False,
-                     implicit_extension_base=False,
-                     download_dependencies=True,
-                     store_type=True)
+    return XSDParser(
+        min_tree=False,
+        ignore_modules=True,
+        collapse=True,
+        auto_key_keyref=False,
+        implicit_extension_base=False,
+        download_dependencies=True,
+        store_type=True,
+    )
 
 
 def render_form(request, root_element):
@@ -49,8 +55,9 @@ def generate_element_absent(request, element_id):
 
     """
     xsd_parser = get_parser()
-    html_form = xsd_parser.generate_element_absent(request, element_id,
-                                                   renderer_class=CheckboxRenderer)
+    html_form = xsd_parser.generate_element_absent(
+        request, element_id, renderer_class=CheckboxRenderer
+    )
     return html_form
 
 
@@ -65,8 +72,9 @@ def generate_choice_absent(request, element_id):
 
     """
     xsd_parser = get_parser()
-    html_form = xsd_parser.generate_choice_absent(request, element_id,
-                                                  renderer_class=CheckboxRenderer)
+    html_form = xsd_parser.generate_choice_absent(
+        request, element_id, renderer_class=CheckboxRenderer
+    )
     return html_form
 
 
@@ -95,15 +103,16 @@ def remove_form_element(request, element_id):
     # number of children after deletion
     children_number = len(data_structure_element.children) - 1
 
-    data_structure_element = remove_child_element(data_structure_element,
-                                                  data_structure_element_to_pull)
+    data_structure_element = remove_child_element(
+        data_structure_element, data_structure_element_to_pull
+    )
 
     code = 0
     html_form = ""
 
-    if children_number <= data_structure_element.options['min']:
+    if children_number <= data_structure_element.options["min"]:
         # len(schema_element.children) == schema_element.options['min']
-        if data_structure_element.options['min'] != 0:
+        if data_structure_element.options["min"] != 0:
             code = 1
         else:  # schema_element.options['min'] == 0
             code = 2

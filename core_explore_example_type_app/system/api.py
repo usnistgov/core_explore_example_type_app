@@ -10,7 +10,9 @@ from core_explore_example_type_app.components.data_item.models import Item, Data
 from core_explore_example_type_app.utils.parser.parser import get_parser
 from core_explore_example_type_app.utils.parser.renderer.xml_type import XmlTypeRenderer
 from core_explore_example_type_app.utils.xml import generate_items
-from core_parser_app.components.data_structure_element import api as data_structure_element_api
+from core_parser_app.components.data_structure_element import (
+    api as data_structure_element_api,
+)
 from core_parser_app.tools.parser.parser import delete_branch_from_db
 
 
@@ -39,18 +41,24 @@ def generate_data_items_from_data(data):
         generated_items = generate_items(root, root.tag)
         list_to_insert = []
         for generated_item in generated_items:
-            item = Item(path=generated_item['path'], value=generated_item['value'])
+            item = Item(path=generated_item["path"], value=generated_item["value"])
             list_to_insert.append(item)
 
         # Upsert DataItem
-        data_item = DataItem(data=data, template=data.template, list_content=list_to_insert,
-                             last_modification_date=data.last_modification_date)
+        data_item = DataItem(
+            data=data,
+            template=data.template,
+            list_content=list_to_insert,
+            last_modification_date=data.last_modification_date,
+        )
         data_item_api.upsert(data_item)
 
         # delete data_structure
         delete_branch_from_db(root_element.id)
-    except Exception, e:
-        raise exceptions.ApiError('An error occurred during the generation: {0}.'.format(e.message))
+    except Exception as ex:
+        raise exceptions.ApiError(
+            "An error occurred during the generation: {0}.".format(str(e))
+        )
 
 
 def upsert_from_data(data, force_update=False):
@@ -65,12 +73,15 @@ def upsert_from_data(data, force_update=False):
     try:
         data_item = data_item_api.get_by_data(data)
         # Check if the document that we have needs to be updated.
-        if data_item.last_modification_date != data.last_modification_date or force_update:
+        if (
+            data_item.last_modification_date != data.last_modification_date
+            or force_update
+        ):
             generate_data_items_from_data(data)
     except exceptions.DoesNotExist:
         generate_data_items_from_data(data)
-    except Exception, e:
-        raise e
+    except Exception as ex:
+        raise ex
 
 
 def _generate_form(xsd_string, xml_string):

@@ -1,7 +1,8 @@
 """ Unit Test Data
 """
-from core_main_app.utils.integration_tests.integration_base_test_case import \
-    MongoIntegrationBaseTestCase
+from core_main_app.utils.integration_tests.integration_base_test_case import (
+    MongoIntegrationBaseTestCase,
+)
 from tests.components.data_item.fixtures.fixtures import DataItemFixtures
 from core_explore_example_type_app.components.data_item.models import DataItem
 from core_main_app.commons import exceptions
